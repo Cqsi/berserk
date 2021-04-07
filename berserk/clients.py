@@ -637,6 +637,17 @@ class Challenges(BaseClient):
 class Board(BaseClient):
     """Client for physical board or external application endpoints."""
 
+    # this is taken from clients.Bots in order to be able to test https://github.com/Cqsi/lichs
+    def accept_challenge(self, challenge_id):
+        """Accept an incoming challenge.
+
+        :param str challenge_id: ID of a challenge
+        :return: success
+        :rtype: bool
+        """
+        path = f'api/challenge/{challenge_id}/accept'
+        return self._r.post(path)['ok']
+
     def stream_incoming_events(self):
         """Get your realtime stream of incoming events.
 
